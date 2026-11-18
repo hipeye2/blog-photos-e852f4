@@ -1,0 +1,47 @@
+<!doctype html><html lang="ko"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1"><meta name="robots" content="noindex,nofollow">
+<title>썸네일 복사</title><style>
+body{font-family:-apple-system,"Noto Sans KR",sans-serif;max-width:720px;margin:0 auto;padding:16px;line-height:1.8;background:#f5f7f6;font-size:17px}
+h1{font-size:22px;margin:8px 0 16px}
+h2{font-size:18px;margin:0 0 8px}
+button{font:inherit;font-weight:700;font-size:18px;padding:14px;border:0;border-radius:12px;background:#0a8f4d;color:#fff;width:100%;margin:4px 0}
+section{background:#fff;border:1px solid #d5dcd8;border-radius:12px;padding:16px;margin:0 0 20px}
+section img{max-width:100%;width:360px;height:auto;display:block;margin:8px 0;border:1px solid #e2e6e4}
+.msg{display:block;font-weight:700;min-height:1.5em;margin:4px 0}
+ol{background:#fff;border:1px solid #d5dcd8;border-radius:12px;padding:14px 14px 14px 36px;font-size:15px}
+</style></head><body>
+<h1>썸네일 복사</h1>
+<ol>
+<li>네이버 블로그에서 이미 올린 글을 열고 <b>수정</b>을 누릅니다.</li>
+<li>본문 <b>맨 위</b>(첫 사진이 들어갈 자리)를 고릅니다.</li>
+<li>아래 해당 글의 <b>썸네일 복사</b>를 누르고, 그 자리를 <b>길게 눌러</b> 붙여 넣습니다. 키보드의 클립보드 버튼으로 붙이면 사진이 빠질 수 있습니다.</li>
+<li>맨 위에 썸네일이 들어왔는지 확인하고 저장합니다.</li>
+</ol>
+<section>
+<h2>동두천 지행동 마루철거</h2>
+<p>글자: 동두천 지행동 · 마루철거</p>
+<button type="button" onclick="copyNode('jidong','동두천 지행동 마루철거')">썸네일 복사</button>
+<span class="msg" id="msg-jidong"></span>
+<div id="copy-jidong"><p><img src="https://raw.githubusercontent.com/hipeye2/blog-photos-e852f4/main/p/adfc82d142798bba/thumb-jidong.png" alt=""></p></div>
+</section>
+<section>
+<h2>의정부 의정부동 마루철거</h2>
+<p>글자: 의정부 의정부동 · 마루철거</p>
+<button type="button" onclick="copyNode('uijeong','의정부 의정부동 마루철거')">썸네일 복사</button>
+<span class="msg" id="msg-uijeong"></span>
+<div id="copy-uijeong"><p><img src="https://raw.githubusercontent.com/hipeye2/blog-photos-e852f4/main/p/adfc82d142798bba/thumb-uijeong.png" alt=""></p></div>
+</section>
+<script>
+function copyNode(id, label){
+  var msg=document.getElementById('msg-'+id);
+  var n=document.getElementById('copy-'+id);
+  function sel(){var r=document.createRange();r.selectNodeContents(n);var s=getSelection();s.removeAllRanges();s.addRange(r);var ok=false;try{ok=document.execCommand('copy')}catch(e){}s.removeAllRanges();msg.textContent=ok?'복사됨. 글 맨 위를 길게 눌러 붙여 넣으세요.':'복사 실패. 그림을 길게 눌러 복사하세요.';}
+  if(navigator.clipboard&&window.ClipboardItem){
+    navigator.clipboard.write([new ClipboardItem({
+      'text/html':new Blob([n.innerHTML],{type:'text/html'}),
+      'text/plain':new Blob([n.innerText||label],{type:'text/plain'})
+    })]).then(function(){msg.textContent='복사됨. 글 맨 위를 길게 눌러 붙여 넣으세요.';},sel);
+  }else{sel();}
+}
+</script>
+</body></html>
