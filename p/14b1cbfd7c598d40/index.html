@@ -1,0 +1,24 @@
+<!doctype html><html lang="ko"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1"><meta name="robots" content="noindex,nofollow">
+<title>버튼 복사</title><style>
+body{font-family:-apple-system,"Noto Sans KR",sans-serif;max-width:720px;margin:0 auto;padding:16px;line-height:1.8;background:#f5f7f6;font-size:17px}
+button{font:inherit;font-weight:700;font-size:18px;padding:14px;border:0;border-radius:12px;background:#0a8f4d;color:#fff;width:100%;margin:4px 0}
+#post{background:#fff;border:1px solid #d5dcd8;border-radius:12px;padding:16px}#post img{max-width:100%;display:block}
+ol{background:#fff;border:1px solid #d5dcd8;border-radius:12px;padding:14px 14px 14px 36px;font-size:15px}
+</style></head><body>
+<button id="b" type="button">버튼 복사</button><b id="msg"></b>
+<ol><li>네이버 블로그에서 이미 올린 글을 열고 <b>수정</b>을 누릅니다.</li>
+<li>맨 아래 카카오톡 채널 주소 줄 다음 칸을 고릅니다.</li>
+<li>위 <b>버튼 복사</b>를 누르고 그 칸을 길게 눌러 붙여 넣습니다. 이미 있는 카카오 버튼이 겹치면 새로 붙은 카카오 부분은 지워 주세요.</li>
+<li>홈페이지 버튼을 눌러 홈페이지가 열리는지 확인하고 저장합니다.</li></ol>
+<div id="post"><p><br></p>
+<p><a href="https://pf.kakao.com/_xaEGxiX"><img src="https://raw.githubusercontent.com/hipeye2/blog-photos-e852f4/main/brand/kakao-channel-button.png" alt="채널 추가하고 오픈 소식 받기"></a></p>
+<p>카카오톡 채널: https://pf.kakao.com/_xaEGxiX</p>
+<p><a href="https://heolgo.pages.dev/"><img src="https://raw.githubusercontent.com/hipeye2/blog-photos-e852f4/main/brand/home-button.png" alt="헐고 홈페이지 보러 가기"></a></p>
+<p>헐고 홈페이지: https://heolgo.pages.dev/</p></div>
+<script>
+var msg=document.getElementById('msg');
+document.getElementById('b').onclick=function(){var n=document.getElementById('post');
+function sel(){var r=document.createRange();r.selectNodeContents(n);var s=getSelection();s.removeAllRanges();s.addRange(r);var ok=false;try{ok=document.execCommand('copy')}catch(e){}s.removeAllRanges();msg.textContent=ok?'복사됨':'복사 실패. 길게 눌러 복사하세요.';}
+if(navigator.clipboard&&window.ClipboardItem){navigator.clipboard.write([new ClipboardItem({'text/html':new Blob([n.innerHTML],{type:'text/html'}),'text/plain':new Blob([n.innerText],{type:'text/plain'})})]).then(function(){msg.textContent='복사됨'},sel)}else{sel()}};
+</script></body></html>
